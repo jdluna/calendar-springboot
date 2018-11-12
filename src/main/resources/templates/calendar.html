@@ -24,8 +24,8 @@
 		<li th:text="${NewYearsDay}"></li>
 		<li th:text="${MLKDay}"></li>
 		<li th:text="${PresidentsDay}"></li>
-		<li th:text="${GoodFriday}"></li>
-		<li th:text="${EasterSunday}"></li>
+		<li th:if="${GoodFriday} != null" th:text="${GoodFriday}"></li>
+		<li th:if="${EasterSunday} != null" th:text="${EasterSunday}"></li>
 		<li th:text="${MemorialDay}"></li>
 
 		<li th:text="${IndependenceDay}"></li>

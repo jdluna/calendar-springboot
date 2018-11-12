@@ -98,14 +98,14 @@ public class CalendarController {
 		// george washington day - 3rd monday in feb
 		holidayDates.put("PresidentsDay", "President's Day : " + setAsHoliday(calendar.get("FEB"), "MON", 3));
 		
-		// set easter
-		Date[] dates = setEaster(year);
-		if (dates[0] != null) {
-			holidayDates.put("EasterSunday", "Easter Sunday : " + dates[0]);
-		}
-		if (dates[1] != null) {
-			holidayDates.put("GoodFriday", "Good Friday : " +  dates[1]);
-		}
+		// // set easter
+		// Date[] dates = setEaster(year);
+		// if (dates[0] != null) {
+		// 	holidayDates.put("EasterSunday", "Easter Sunday : " + dates[0]);
+		// }
+		// if (dates[1] != null) {
+		// 	holidayDates.put("GoodFriday", "Good Friday : " +  dates[1]);
+		// }
 
 		// memorial day - last monday in may
 		holidayDates.put("MemorialDay", "Memorial Day : " + setLastDayOccurrance(calendar.get("MAY"), "MON"));
