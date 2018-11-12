@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.util.SocketUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -211,11 +212,15 @@ public class CalendarController {
 			int temp = fullMoon.getDow();
 			int daysToFriday = 0;
 			int daysToSunday = 0;
+			System.out.println("fullMoon.DOW: " + temp + ", fullMoon.day: " + fullMoon.getDay());
 			
-			
-			while (!Date.DAYOFWEEK[temp].equals("FRI")) {
-				temp = (temp - 1) % 7;
-				daysToFriday++;
+			if (Date.DAYOFWEEK[fullMoon.getDow() + 1].equals("FRI")) daysToFriday = -1;
+			else {
+				while (!Date.DAYOFWEEK[temp].equals("FRI")) {
+					System.out.println("temp: " + temp + ", DOW: " + Date.DAYOFWEEK[temp]);
+					temp = (temp == 0) ? 6 : (temp -1) % 7;
+					daysToFriday++;
+				}
 			}
 			
 			temp = fullMoon.getDow();
