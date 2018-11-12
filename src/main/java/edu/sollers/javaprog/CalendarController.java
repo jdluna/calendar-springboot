@@ -5,10 +5,12 @@ package edu.sollers.javaprog;
 
 import edu.sollers.javaprog.Date;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Karanveer
  *
  */
-@RequestMapping("/Calendar")
 @Controller
 public class CalendarController {
 	HashMap<String, ArrayList<Date>> calendar = new HashMap<>();
@@ -28,9 +29,13 @@ public class CalendarController {
 	
 	HashMap<String, String> holidayDates = new HashMap<>();
 
+	@GetMapping("/")
+	public ModelAndView doGet() {
+		int year = LocalDate.now().getYear();
+		return doPost(String.valueOf(year));
+	}
 	
-	
-	@PostMapping
+	@PostMapping("/Calendar")
 	public ModelAndView doPost(@RequestParam String year) {
 		ModelAndView mv = null;
 
@@ -47,6 +52,7 @@ public class CalendarController {
 		
 		mv.addAllObjects(dateValues);
 		mv.addAllObjects(holidayDates);
+		mv.addObject("year", year);
 
 		return mv;
 	}
